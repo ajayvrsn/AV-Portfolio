@@ -1373,7 +1373,7 @@ a.contact-value:hover { color: var(--gold-2); }
 
 .form-error {
   font-family: var(--ff-mono);
-  font-size: 0.58rem;
+  font-size: 0.90rem;
   letter-spacing: 0.1em;
   color: #c0392b;
   opacity: 0;
@@ -1411,7 +1411,7 @@ a.contact-value:hover { color: var(--gold-2); }
 
 .form-success {
   font-family: var(--ff-mono);
-  font-size: 0.65rem;
+  font-size: 0.90rem;
   letter-spacing: 0.12em;
   color: #2e7d32;
   opacity: 0;
@@ -1707,8 +1707,8 @@ body::before {
 }
 
 .hero-left {
-  justify-content: center;
-  padding: 8rem 3rem 6rem clamp(1.5rem, 7vw, 7rem);
+  justify-content: flex-start;
+  padding: 3.5rem 3rem 5rem clamp(1.5rem, 7vw, 7rem);
 }
 
 .hero-name {
@@ -1755,8 +1755,9 @@ body::before {
 
 .hero-right {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: 2.5rem;
 }
 
 .hero-img-wrap {
@@ -1942,13 +1943,13 @@ footer { background: var(--paper); }
 }
 
 @media (max-width: 900px) {
-  .hero-left { padding: 7rem 2.5rem 3rem; }
+  .hero-left { padding: 3rem 2.5rem 3rem; }
   .hero-img-wrap { width: min(74%, 400px); }
   .timeline-item:hover { padding-left: 0; }
 }
 
 @media (max-width: 480px) {
-  .hero-left { padding: 6rem 1.5rem 2rem; }
+  .hero-left { padding: 2.5rem 1.5rem 2rem; }
   .hero-img-wrap { width: 80%; }
   .hero-img-placeholder { border-width: 6px; }
   .hero-name { font-size: clamp(3.3rem, 15vw, 5rem); }
