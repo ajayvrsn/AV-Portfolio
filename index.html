@@ -17,6 +17,9 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
   <!-- Custom Cursor -->
   <div id="cursor"></div>
   <div id="cursor-ring"></div>
@@ -33,18 +36,18 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <!-- Theme Toggle -->
-<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" aria-pressed="false">
   <span class="theme-icon">☀</span>
 </button>
-    <button class="nav-menu-btn" id="menuBtn" aria-label="Toggle menu">
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span>
     </button>
   </nav>
 
   <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <ul>
-      <button class="theme-toggle theme-toggle--mobile" id="themeToggleMobile" aria-label="Toggle theme">
+      <button class="theme-toggle theme-toggle--mobile" id="themeToggleMobile" aria-label="Toggle theme" aria-pressed="false">
   <span class="theme-icon">☀</span>
 </button>
       <li><a href="#about" class="mobile-link">About</a></li>
@@ -57,6 +60,7 @@
   <!-- ============================================================
        HERO
   ============================================================ -->
+  <main id="main-content">
   <section id="hero">
     <div class="hero-left">
       <div class="hero-eyebrow-group">
@@ -520,7 +524,7 @@ mobile devices.
           <span class="btn-text">Send Message</span>
           <span class="btn-arrow">→</span>
         </button>
-        <p class="form-success" id="formSuccess">Message sent! I'll reply within 24 hours.</p>
+        <p class="form-success" id="formSuccess" role="status" aria-live="polite">Message sent! I'll reply within 24 hours.</p>
       </form>
     </div>
   </section>
@@ -528,6 +532,8 @@ mobile devices.
   <!-- ============================================================
        FOOTER
   ============================================================ -->
+  </main>
+
   <footer>
     <div class="footer-left">
       <span class="footer-logo">Ajay Varsan R</span>

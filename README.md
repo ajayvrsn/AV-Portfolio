@@ -1,7 +1,26 @@
 # Ajay Varsan — Portfolio
 
 A classy editorial portfolio with scroll animations, custom cursor,
-parallax, and form validation. no frameworks has been used — just basic vanilla HTML, CSS, JS.
+parallax, theme switching, responsive layouts, and contact-form feedback.
+It intentionally uses vanilla HTML, CSS, and JavaScript so it stays fast,
+portable, and easy to deploy as a static site.
+
+### Why not React or Next.js?
+
+A framework is not required for a single-page portfolio like this. React or
+Next.js becomes useful when the site needs reusable page components, a CMS,
+case-study routes, authentication, server-side data, or a content pipeline.
+For the current site, the biggest gains come from strong project storytelling,
+real project links, image optimization, accessibility, and performance rather
+than adding framework overhead.
+
+The current implementation also includes:
+
+- Keyboard skip navigation and visible focus states
+- Reduced-motion and touch-device safeguards for animated effects
+- Accessible mobile navigation and theme-toggle state
+- A scroll-progress indicator
+- Contact form error handling for failed Formspree requests
 
 ---
 

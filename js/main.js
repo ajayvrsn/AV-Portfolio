@@ -76,12 +76,19 @@
 ============================================================ */
 (function initNav() {
   const nav = document.getElementById('nav');
+  const progress = document.getElementById('scrollProgress');
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
       nav.classList.add('scrolled');
     } else {
       nav.classList.remove('scrolled');
+    }
+
+    if (progress) {
+      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const percentage = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+      progress.style.width = `${Math.min(100, percentage)}%`;
     }
   }, { passive: true });
 
@@ -117,6 +124,8 @@
   function toggleMenu(open) {
     btn.classList.toggle('open', open);
     menu.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-hidden', String(!open));
     document.body.style.overflow = open ? 'hidden' : '';
   }
 
@@ -169,6 +178,8 @@
    Only runs above the fold to avoid jank.
 ============================================================ */
 (function initParallax() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   const heroLeft = document.querySelector('.hero-left');
   const heroImg  = document.querySelector('.hero-img-wrap');
   const hero     = document.getElementById('hero');
@@ -244,6 +255,7 @@
     const name    = document.getElementById('name').value.trim();
     const email   = document.getElementById('email').value.trim();
     const project = document.getElementById('project').value.trim();
+    const budget  = document.getElementById('budget').value.trim();
 
     // Validate name
     if (!name) {
@@ -268,24 +280,27 @@
 
     if (!valid) return;
 
-    // Simulate sending (replace with real API call)
     submitBtn.disabled = true;
     submitBtn.querySelector('.btn-text').textContent = 'Sending...';
 
-    // -------------------------------------------------------
-    // TO CONNECT A REAL BACKEND, replace the setTimeout below
-    // with a fetch() call. Example using Formspree:
-    
-    const response = await fetch('https://formspree.io/f/xqegggne', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, project }),
-    });
-    
-    // if (response.ok) { ... show success ... }
-    // -------------------------------------------------------
+    try {
+      const response = await fetch('https://formspree.io/f/xqegggne', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ name, email, project, budget }),
+      });
 
-    await new Promise((r) => setTimeout(r, 1200)); // simulated delay
+      if (!response.ok) {
+        throw new Error(`Form submission failed with status ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Unable to submit contact form:', error);
+      submitBtn.querySelector('.btn-text').textContent = 'Try again';
+      submitBtn.disabled = false;
+      successMsg.textContent = 'Unable to send right now. Please email me directly.';
+      successMsg.classList.add('visible');
+      return;
+    }
 
     submitBtn.querySelector('.btn-text').textContent = 'Sent ✓';
     submitBtn.style.background = 'var(--gold-2)';
@@ -297,6 +312,7 @@
       submitBtn.querySelector('.btn-text').textContent = 'Send Message';
       submitBtn.style.background = '';
       submitBtn.disabled = false;
+      successMsg.textContent = "Message sent! I'll reply within 24 hours.";
       successMsg.classList.remove('visible');
     }, 4000);
   });
@@ -426,6 +442,7 @@
     toggleBtns.forEach((btn) => {
       const iconEl = btn.querySelector('.theme-icon');
       if (iconEl) iconEl.textContent = icon;
+      btn.setAttribute('aria-pressed', String(theme === 'dark'));
     });
   }
 
