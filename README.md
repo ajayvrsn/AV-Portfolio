@@ -3,10 +3,6 @@
 A classy editorial portfolio with scroll animations, custom cursor,
 parallax, and form validation. no frameworks has been used — just basic vanilla HTML, CSS, JS.
 
-The LeetCode section displays live public stats for `ajayvrsn` (solved totals,
-streak, active days, and recent accepted submissions). It loads on page open,
-can be refreshed manually, and polls the public API every 15 minutes.
-
 ---
 
 ## Project Structure
